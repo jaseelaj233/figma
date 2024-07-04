@@ -1,3 +1,12 @@
+import 'package:figma/about.dart';
+import 'package:figma/adoptmissing.dart';
+import 'package:figma/booking.dart';
+import 'package:figma/custombutton.dart';
+import 'package:figma/donate.dart';
+import 'package:figma/found.dart';
+import 'package:figma/medicin.dart';
+import 'package:figma/myreports.dart';
+import 'package:figma/reportmissing.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -8,7 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List buttons = [
+  List<String> buttons = [
     'Report an Incident',
     'Find your pet',
     'Adopt',
@@ -16,6 +25,15 @@ class _HomeState extends State<Home> {
     'Booking',
     'Medicine',
     'About us'
+  ];
+  List<Widget> routes = [
+    Found(),
+    Reports(),
+    Adoptmissing(),
+    Donate(),
+    Booking(),
+    Medicin(),
+    About(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -41,20 +59,8 @@ class _HomeState extends State<Home> {
                 child: ListView.separated(
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
-                      return Container(
-                          height: 50,
-                          width: 50,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              buttons[index],
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  Color.fromARGB(222, 132, 83, 160)),
-                            ),
-                          ));
+                      return Custombutton(
+                          buttonText: buttons[index], pageName: routes[index]);
                     },
                     separatorBuilder: (context, index) => SizedBox(
                           height: 20,
